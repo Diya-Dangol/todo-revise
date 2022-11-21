@@ -1,12 +1,14 @@
 // import './App.css';
 // import Todo from './components/Todo';
 
-import Todoform from "./components/form";
+// import Todoform from "./components/form";
+import Todo from "./components/multiple-inputs";
 
 function App() {
   return (
     <div>
-      <Todoform />
+      {/* <Todoform /> */}
+      <Todo />
       {/* <Todo /> */}
     </div>
   );

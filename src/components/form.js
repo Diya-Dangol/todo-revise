@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 function Todoform() {
     const [todo, setTodo]=useState("");
@@ -7,7 +7,7 @@ function Todoform() {
     const handleSubmit=(e) =>{
         e.preventDefault();
         if(todo){
-            const todos={todo};
+            const todos={id: new Date().getTime().toString(), todo};
             console.log(todos);
             setTodolist((todolist) =>{
                 return [...todolist, todos];
@@ -24,6 +24,14 @@ function Todoform() {
     const handleChange=(e) =>{
         setTodo(e.target.value)
     }
+
+    const handleRemove= (id)=>{
+        const newTodos =[...todolist];
+        newTodos.splice(id, 1);
+        setTodolist((todolist) =>{
+            return [...todolist, newTodos];
+        })
+    }
     
     return (
         <div>
@@ -36,6 +44,7 @@ function Todoform() {
                 return (
                     <div key={id}>
                         <h3>{todo}</h3>
+                        <button type="button" onClick={handleRemove(id)}>Delete</button>
                     </div>
                 )
             })}
