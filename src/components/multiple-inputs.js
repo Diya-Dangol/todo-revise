@@ -6,15 +6,18 @@ function Todo() {
         id:new Date().getTime().toString()
     });
     const [todolist, setTodolist] = useState([]);
+    const [edit, setEdit] = useState(false);
 
     const handleSubmit=(e) =>{
         e.preventDefault();
+        console.log(todoitem);
        if(todoitem.todo){
         const newTodos = {...todoitem}
-        setTodolist(...todolist, newTodos)
+        // debugger
+        setTodolist([...todolist, newTodos])
         setTodoitem({
             todo: "",
-            id: ""
+            id: new Date().getTime().toString()
         })
        }
     }
@@ -25,29 +28,57 @@ function Todo() {
         setTodoitem({...todoitem, [name]: value})
     }
 
-    // const handleRemove= (id)=>{
-    //     const newTodos =[...todolist];
-    //     newTodos.splice(id, 1);
-    //     setTodolist((todolist) =>{
-    //         return [...todolist, newTodos];
-    //     })
-    // }
+    const handleRemove= (id)=>{
+        const newVal= todolist.filter(val => val.id !== id) 
+        setTodolist(newVal)
+    }
+    const handleEdit=(id, todo) =>{
+        console.log(todo);
+        setTodoitem({
+            todo: todo,
+            id: id
+        })
+        setEdit(true);
+        
+        // setTodoitem({todo: {todo}})
+        // const updateVal=setTodoitem()
+    }
+    const updateVal=(e)=>{
+        e.preventDefault();
+        console.log('hello');
+        const newVal= todolist.map((item) => {
+            if(item.id === todoitem.id){
+                return todoitem; //new Value
+            }
+            return item //old value
+        })
+        setTodolist(newVal);
+        setTodoitem({
+            todo: "",
+            id: new Date().getTime().toString()
+        })
+        setEdit(false)
+        console.log(newVal);
+    }
     
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form>
                 <input type="text" id="todo" name="todo" value={todoitem.todo} onChange={handleChange} />
-                <button>Add Names</button>
+                {edit ? <button onClick={updateVal}>Edit Name</button> : <button onClick={handleSubmit}>Add Names</button>}
             </form>
-            {/* {todolist.map((todoitem)=>{
+            {todolist.map((todoitem)=>{
                 const {id, todo} = todoitem;
                 return (
                     <div key={id}>
                         <h3>{todo}</h3>
-                        <button type="button">Delete</button>
+                        {/* <input type="text" id="todo" name="todo" value={todo} onChange ={(e) => setTodoitem(e.target.value, id)} /> */}
+                        <button type="button" onClick={() => handleEdit(id, todo)}>Edit</button>
+                        {/* <button type="button" onClick={() => setTodoitem({id, todo})}>Edit</button> */}
+                        <button type="button" onClick={() => handleRemove(id)}>Delete</button>
                     </div>
                 )
-            })} */}
+            })}
         </div>
     )
 }
