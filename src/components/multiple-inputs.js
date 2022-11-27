@@ -72,9 +72,7 @@ function Todo() {
                 return (
                     <div key={id}>
                         <h3>{todo}</h3>
-                        {/* <input type="text" id="todo" name="todo" value={todo} onChange ={(e) => setTodoitem(e.target.value, id)} /> */}
                         <button type="button" onClick={() => handleEdit(id, todo)}>Edit</button>
-                        {/* <button type="button" onClick={() => setTodoitem({id, todo})}>Edit</button> */}
                         <button type="button" onClick={() => handleRemove(id)}>Delete</button>
                     </div>
                 )

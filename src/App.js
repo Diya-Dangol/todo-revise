@@ -1,15 +1,18 @@
-// import './App.css';
+import './style.css';
 // import Todo from './components/Todo';
-
+// import Counter from './counter';
+import Todos from './todo/todo';
 // import Todoform from "./components/form";
-import Todo from "./components/multiple-inputs";
+// import Multipleinput from "./components/multiple-inputs";
 
 function App() {
   return (
-    <div>
+    <div className="bg">
       {/* <Todoform /> */}
-      <Todo />
       {/* <Todo /> */}
+      {/* <Multipleinput /> */}
+      {/* <Counter value={5} name={"Ram"}/> */}
+      <Todos />
     </div>
   );
 }

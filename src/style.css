@@ -1,0 +1,31 @@
+body{
+    background-color: rgb(86, 196, 176);
+}
+
+.todo{
+    text-align: center;
+}
+
+.todo h2{
+    color:rgb(255, 255, 255);
+}
+
+.tasks{
+    background-color: rgb(255,255,255);
+    /* padding: 50px auto; */
+    width:fit-content;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.todoList h3{
+    margin-right: 20px;
+}
+
+form, .todoList{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
